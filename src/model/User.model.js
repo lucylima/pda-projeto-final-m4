@@ -17,7 +17,7 @@ const User = database.define('User', {
     allowNull: false
   },
   birthDate: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false
   },
   nis: {
