@@ -6,7 +6,7 @@ const database = new Sequelize(
   { dialect: 'postgres' }
 )
 
-const tryConnect = async () => {
+const tryConnectSequelize = async () => {
   try {
     await database.authenticate()
     console.log('Conexão bem-sucedida')
@@ -15,4 +15,4 @@ const tryConnect = async () => {
   }
 }
 
-export { tryConnect }
+export { tryConnectSequelize, database }
