@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize'
-import { database } from '../database/db.js'
+import { DataTypes } from 'sequelize';
+import { database } from '../database/db.js';
 
 const Teacher = database.define('Teacher', {
   id: {
@@ -16,11 +16,10 @@ const Teacher = database.define('Teacher', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  birthDate:{
+  birthDate: {
     type: DataTypes.DATEONLY,
-      allowNull: false
-    
+    allowNull: false
   }
-})
+});
 
-export {Teacher}
+export { Teacher };
