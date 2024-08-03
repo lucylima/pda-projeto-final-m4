@@ -29,7 +29,16 @@ const readAdmin = async (req, res) => {
     });
   }
 }
+const readAdminParam = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    return res.status(200).json(admin)
+  } catch (error) {
+    
+  }
+}
 const editAdmin = async (req, res) => {}
 const deleteAdmin = async (req, res) => {}
 
-export { createAdmin, readAdmin }
+export { createAdmin, readAdmin, readAdminParam }
