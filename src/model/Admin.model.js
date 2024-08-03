@@ -15,7 +15,8 @@ const Admin = database.define(
     },
     cpf: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     birthDate: {
       type: DataTypes.DATEONLY,
@@ -33,4 +34,5 @@ const Admin = database.define(
     timestamps: false
   }
 )
+
 export { Admin }
