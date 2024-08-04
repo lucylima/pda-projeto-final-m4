@@ -1,5 +1,4 @@
 import { Student } from '../model/Student.model.js'
-import { Admin } from '../model/Admin.model.js'
 
 const getStudents = async (req, res) => {
   try {
@@ -43,15 +42,7 @@ const createStudents = async (req, res) => {
 const deleteStudent = async (req, res) => {
   const { student_id } = req.params
   const { cpf, token } = req.body
-  let adminAuth
-  try {
-    adminAuth = await Admin.findOne({
-      where: { cpf, token }
-    })
-  } catch (error) {
-    console.log(error)
-  }
-  if (adminAuth) {
+  if (admin) {
     try {
       const result = await Student.destroy({
         where: {

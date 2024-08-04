@@ -4,7 +4,7 @@ import { jobRouter } from './routes/job.routes.js'
 import { adminRouter } from './routes/Admin.routes.js'
 import { studentRouter } from './routes/Student.routes.js'
 import { classRouter } from './routes/class.routes.js'
-import TeacherRouter from './routes/Teacher.routes.js'
+import { TeacherRouter } from './routes/Teacher.routes.js'
 
 const app = express()
 const port = process.env.PORT

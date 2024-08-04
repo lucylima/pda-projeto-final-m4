@@ -35,4 +35,21 @@ const Admin = database.define(
   }
 )
 
-export { Admin }
+const adminAuth = async ({ cpf, token }) => {
+  try {
+    const admin = await Admin.findOne({
+      where: {
+        cpf,
+        token
+      },
+      attributes: ['name']
+    }, 
+  )
+
+    return admin
+  } catch (error) {
+    return error
+  }
+}
+
+export { Admin, adminAuth }
