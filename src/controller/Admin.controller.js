@@ -1,5 +1,5 @@
 import { Admin } from '../model/Admin.model.js'
-import { nameFormatter } from '../utils/nameFormat.js'
+import { nameFormatter } from '../utils/nameFormat.s'
 
 const createAdmin = async (req, res) => {
   try {
