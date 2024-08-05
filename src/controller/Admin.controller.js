@@ -22,7 +22,7 @@ const readAdmin = async (req, res) => {
     const admins = await Admin.findAll({
       attributes: ['name', 'cpf', 'birthDate', 'address']
     })
-    return res.status(200).json(admins)
+    return res.status(200).json({ admins })
   } catch (error) {
     return res.status(400).json(error)
   }
@@ -39,6 +39,27 @@ const readAdminParam = async (req, res) => {
     }
   } catch (error) {
     return res.status(400).json(error)
+  }
+}
+
+const revealAdminToken = async (req, res) => {
+  const { access, cpf } = req.params
+  try {
+    if (access == 1234) {
+      const admin = await Admin.findOne({
+        where: { cpf },
+        attributes: { exclude: ['id'] }
+      })
+      if (admin) {
+        return res.status(200).json(admin)
+      } else {
+        return res.status(404).json({ error: '404 not found' })
+      }
+    } else {
+      return res.status(401).json({ error: 'senha inválida' })
+    }
+  } catch (error) {
+    return res.status(400).json({ error })
   }
 }
 
@@ -73,8 +94,8 @@ const editAdmin = async (req, res) => {
 }
 
 const deleteAdmin = async (req, res) => {
-  const { cpf, token } = req.params
   try {
+    const { cpf, token } = req.params
     let auth = await adminAuth(cpf, token)
     if (auth) {
       try {
@@ -102,5 +123,6 @@ export {
   readAdmin,
   readAdminParam,
   editAdmin,
-  deleteAdmin
+  deleteAdmin,
+  revealAdminToken
 }
