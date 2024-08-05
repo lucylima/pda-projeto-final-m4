@@ -24,9 +24,7 @@ const readAdmin = async (req, res) => {
     })
     return res.status(200).json(admins)
   } catch (error) {
-    Model.findAll({
-      attributes: ['foo', 'bar']
-    })
+    return res.status(400).json(error)
   }
 }
 
