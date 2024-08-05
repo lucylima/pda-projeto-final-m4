@@ -13,7 +13,7 @@ const createAdmin = async (req, res) => {
     })
     return res.status(201).json({ sucesso: newAdmin })
   } catch (error) {
-    return res.status(500).json({ erro: error })
+    return res.status(400).json({ erro: error })
   }
 }
 
@@ -31,9 +31,15 @@ const readAdmin = async (req, res) => {
 const readAdminParam = async (req, res) => {
   try {
     const { id } = req.params
-    const admin = await Admin.findOne({ where: id })
-    return res.status(200).json(admin)
-  } catch (error) {}
+    const admin = await Admin.findOne({ where: { id: Number(id) } })
+    if (admin) {
+      return res.status(200).json(admin)
+    } else {
+      return res.status(404).json({ error: '404 not found' })
+    }
+  } catch (error) {
+    return res.status(400).json(error)
+  }
 }
 
 const editAdmin = async (req, res) => {
@@ -65,6 +71,7 @@ const editAdmin = async (req, res) => {
     return res.status(400).json({ errorMessage: error })
   }
 }
+
 const deleteAdmin = async (req, res) => {
   const { cpf, token } = req.params
   try {
@@ -77,13 +84,16 @@ const deleteAdmin = async (req, res) => {
             token
           }
         })
-        return res.status(200).json(auth)
+        return res.status(200).json({ Sucesso: auth })
       } catch (error) {
-        return res.status(400).json(error)
+        return res.status(400).json({ Error: error })
       }
     }
+    return res.status(404).json({ Error: '404 not found' })
   } catch (error) {
-    return res.status(400).json(error)
+    return res
+      .status(400)
+      .json({ Error: 'problemas na autenticação', error })
   }
 }
 
