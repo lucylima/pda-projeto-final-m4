@@ -4,7 +4,7 @@ import {
   getTeacher,
   updateTeacher,
   deleteTeacher
-} from '../controller/Teacher.controller.js'
+} from '../controller/teacher.controller.js'
 
 const TeacherRouter = Router()
 

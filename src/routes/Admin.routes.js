@@ -1,3 +1,4 @@
+import { Router } from 'express'
 import {
   createAdmin,
   readAdmin,
@@ -5,8 +6,7 @@ import {
   editAdmin,
   deleteAdmin,
   revealAdminToken
-} from '../controller/Admin.controller.js'
-import { Router } from 'express'
+} from '../controller/admin.controller.js'
 
 const adminRouter = Router()
 
