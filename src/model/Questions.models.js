@@ -15,7 +15,7 @@ const Questions = database.define(
         allowNull: false,
         autoIncrement: true
     },
-    response: {
+    answer: {
         type: DataTypes.STRING,
         allowNull: false,
         autoIncrement: true
