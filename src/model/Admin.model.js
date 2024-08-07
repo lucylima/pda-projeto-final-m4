@@ -1,5 +1,5 @@
 import { database } from '../database/db.js'
-import { DataTypes } from 'sequelize'
+import { DataTypes, Op } from 'sequelize'
 
 const Admin = database.define(
   'Admin',
@@ -35,18 +35,19 @@ const Admin = database.define(
   }
 )
 
-const adminAuth = async ({ cpf, token }) => {
+const adminAuth = async (cpf, token) => {
   try {
     const admin = await Admin.findOne({
       where: {
-        cpf,
-        token
+        [Op.and]: [{ cpf }, { token }]
       },
       attributes: ['name']
-    }, 
-  )
-
-    return admin
+    })
+    if (admin) {
+      return { Deletado: admin }
+    } else {
+      return null
+    }
   } catch (error) {
     return error
   }

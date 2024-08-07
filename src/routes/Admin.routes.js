@@ -1,17 +1,20 @@
+import { Router } from 'express'
 import {
   createAdmin,
   readAdmin,
   readAdminParam,
   editAdmin,
-  deleteAdmin
-} from '../controller/Admin.controller.js'
-import { Router } from 'express'
+  deleteAdmin,
+  revealAdminToken
+} from '../controller/admin.controller.js'
 
 const adminRouter = Router()
 
-adminRouter.get('/admin', readAdminParam)
-adminRouter.post('/admin/create', createAdmin)
-adminRouter.put('/admin/:token', editAdmin)
-adminRouter.delete('/admin/:cpf/:token', deleteAdmin)
+adminRouter.get('/admin', readAdmin)
+adminRouter.get("/admin/:id", readAdminParam)
+adminRouter.get("/admin/revelar-token/:access/:cpf", revealAdminToken)
+adminRouter.post('/admin/cadastrar', createAdmin)
+adminRouter.put('/admin/editar/:token', editAdmin)
+adminRouter.delete('/admin/remover/:cpf/:token', deleteAdmin)
 
 export { adminRouter }
