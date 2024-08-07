@@ -42,6 +42,10 @@ const Student = database.define(
       type: DataTypes.STRING,
       allowNull: true
     },
+    // registrationNumber: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     student_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4

@@ -1,4 +1,5 @@
 import { Student } from '../model/Student.model.js'
+// import { registrationNumber } from '../utils/numberPlate.js'
 
 const getStudents = async (req, res) => {
   try {
@@ -17,11 +18,13 @@ const createStudents = async (req, res) => {
       cpf,
       dataDeNascimento,
       nis,
-      endereco,
+      endereco, 
       rendaFamiliar,
       turma,
       curso
     } = req.body
+
+    //  const matricula = registrationNumber()
 
     const newStudent = await Student.create({
       fullName: nome,
@@ -32,6 +35,7 @@ const createStudents = async (req, res) => {
       familyIncome: rendaFamiliar,
       class: turma,
       course: curso
+      // ,registrationNumber: matricula
     })
     return res.status(201).json(newStudent)
   } catch (error) {
