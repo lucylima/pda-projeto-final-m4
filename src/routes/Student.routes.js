@@ -14,3 +14,4 @@ studentRouter.delete('/estudantes/:student_id', deleteStudent)
 studentRouter.put('/estudante/:student_id', updateStudent)
 
 export { studentRouter }
+
