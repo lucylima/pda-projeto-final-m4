@@ -41,12 +41,12 @@ const adminAuth = async (cpf, token) => {
       where: {
         [Op.and]: [{ cpf }, { token }]
       },
-      attributes: ['name']
+      attributes: ['id']
     })
     if (admin) {
-      return { Deletado: admin }
+      return true
     } else {
-      return null
+      return false
     }
   } catch (error) {
     return error

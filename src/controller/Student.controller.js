@@ -100,7 +100,7 @@ const updateStudent = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: 'Estudante  foi encontrado' })
+        .json({ message: 'Estudante foi encontrado' })
     }
   } catch (error) {
     return res.status(500).json({ error: 'Erro no estudante' })
