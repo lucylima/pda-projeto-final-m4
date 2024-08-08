@@ -6,6 +6,7 @@ import { studentRouter } from './routes/student.routes.js'
 import { classRouter } from './routes/class.routes.js'
 import { TeacherRouter } from './routes/teacher.routes.js'
 import { CompanyRouter } from './routes/company.routes.js'
+import { QuestionaryRouter } from './routes/questionary.routes.js'
 
 const app = express()
 const port = process.env.PORT
@@ -17,6 +18,7 @@ app.use(studentRouter)
 app.use(classRouter)
 app.use(TeacherRouter)
 app.use(CompanyRouter)
+app.use(QuestionaryRouter)
 
 app.listen(port, () => {
   tryConnectSequelize()

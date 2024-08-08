@@ -65,7 +65,7 @@ const updateCompany = async (req, res) => {
         } else {
             return res
                 .status(404)
-                .json({ message: 'Empresa  foi encontrado' })
+                .json({ message: 'Empresa não foi encontrada' })
         }
     } catch (error) {
         return res.status(500).json({ error: 'Erro na Empresa' })
