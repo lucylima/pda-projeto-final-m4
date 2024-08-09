@@ -3,14 +3,16 @@ import {
   createClass,
   getAllClasses,
   updateClass,
-  deleteClass
+  deleteClass,
+  findClass
 } from '../controller/class.controller.js'
 
 const classRouter = Router()
 
-classRouter.post('/add/class', createClass)
-classRouter.get('/classes', getAllClasses)
-classRouter.put('/class/:class_id', updateClass)
-classRouter.delete('/classes/delete/:class_id', deleteClass)
+classRouter.get('/class', getAllClasses)
+classRouter.get('/class/:id', findClass)
+classRouter.post('/class/register', createClass) 
+classRouter.put('/class/edit/:id', updateClass)
+classRouter.delete('/class/delete/:id', deleteClass)
 
 export { classRouter }

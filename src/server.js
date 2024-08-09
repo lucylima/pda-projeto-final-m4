@@ -1,5 +1,5 @@
 import express from 'express'
-import cors from 'cors'
+import cors  from 'cors'
 import { tryConnectSequelize } from './database/db.js'
 import { jobRouter } from './routes/job.routes.js'
 import { adminRouter } from './routes/admin.routes.js'

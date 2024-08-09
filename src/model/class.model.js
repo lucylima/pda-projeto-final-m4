@@ -1,4 +1,5 @@
 import { database } from '../database/db.js'
+import { Teacher } from '../model/Teacher.model.js'
 import { DataTypes } from 'sequelize'
 
 const Class = database.define(
@@ -23,9 +24,13 @@ const Class = database.define(
       type: DataTypes.STRING,
       allowNull: false
     },
-    teacher: {
-      type: DataTypes.STRING,
-      allowNull: false
+    teacher_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references:{
+        model: Teacher,
+        key: 'id'
+      }
     }
   },
   {
