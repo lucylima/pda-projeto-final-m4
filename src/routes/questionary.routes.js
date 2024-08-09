@@ -6,12 +6,12 @@ import {
   deleteQuestionary
 } from '../controller/questionary.controller.js'
 
-const QuestionaryRouter = Router()
+const questionaryRouter = Router()
 
-QuestionaryRouter.post('/registrer/Questionary', createQuestionary)
-QuestionaryRouter.get('/Questionary', getQuestionary)
-QuestionaryRouter.put('/estudante/:Questionary_id', updateQuestionary)
-QuestionaryRouter.delete('/delete/Questionary/:id', deleteQuestionary)
+questionaryRouter.post('/registrer/Questionary', createQuestionary)
+questionaryRouter.get('/Questionary', getQuestionary)
+questionaryRouter.put('/estudante/:Questionary_id', updateQuestionary)
+questionaryRouter.delete('/delete/Questionary/:id', deleteQuestionary)
 
 
-export { QuestionaryRouter }
+export { questionaryRouter }
