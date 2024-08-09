@@ -12,7 +12,7 @@ const createAdmin = async (req, res) => {
       birthDate: dataDeNascimento,
       address: endereco
     })
-    return res.status(201).json({ sucess: newAdmin })
+    return res.status(201).json(newAdmin)
   } catch (error) {
     return res.status(400).json({ error: error })
   }
@@ -23,7 +23,7 @@ const readAdmin = async (req, res) => {
     const admins = await Admin.findAll({
       attributes: ['name', 'cpf', 'birthDate', 'address']
     })
-    return res.status(200).json({ admins })
+    return res.status(200).json(admins)
   } catch (error) {
     return res.status(400).json({ error })
   }
@@ -37,7 +37,7 @@ const findAdmin = async (req, res) => {
       attributes: { exclude: ['id', 'token'] }
     })
     if (admin) {
-      return res.status(200).json({ admin })
+      return res.status(200).json(dmin)
     } else {
       return res.status(404).json({ error: '404 not found' })
     }
@@ -73,8 +73,8 @@ const editAdmin = async (req, res) => {
     const { nome, cpf, dataDeNascimento, endereco } = req.body
     const editedAdmin = { nome, cpf, dataDeNascimento, endereco }
     try {
-      const admin = await Admin.findOne({ where: token})
-      if(admin){
+      const admin = await Admin.findOne({ where: token })
+      if (admin) {
         await Admin.update(
           {
             name: nameFormatter(nome),
@@ -88,15 +88,15 @@ const editAdmin = async (req, res) => {
             }
           }
         )
-      }else{
-        res.status(401).json({erorr: 'unauthorized'})
+      } else {
+        res.status(401).json({ erorr: 'unauthorized' })
       }
     } catch (error) {
-      res.status(404).json({erorr: 'erro ao tentar validar token'})
+      res.status(404).json({ erorr: 'erro ao tentar validar token' })
     }
-    return res.status(200).json({ sucess: { editedAdmin } })
+    return res.status(200).json(editedAdmin)
   } catch (error) {
-    return res.status(400).json({ error  })
+    return res.status(400).json({ error })
   }
 }
 
@@ -106,22 +106,22 @@ const deleteAdmin = async (req, res) => {
     let auth = await adminAuth(cpf, token)
     if (auth) {
       try {
-       await Admin.destroy({
+        await Admin.destroy({
           where: {
             cpf,
             token
           }
         })
-        return res.status(200).json({ Sucess: auth })
+        return res.status(200).json('sucess')
       } catch (error) {
-        return res.status(400).json({ Error: error })
+        return res.status(400).json(error)
       }
     }
     return res.status(404).json({ Error: '404 not found' })
   } catch (error) {
     return res
       .status(400)
-      .json({ Error: 'problemas na autenticação', error })
+      .json({ Error: 'problemas na autenticação' })
   }
 }
 

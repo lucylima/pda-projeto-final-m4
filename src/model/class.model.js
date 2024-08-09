@@ -27,7 +27,6 @@ const Class = database.define(
       type: DataTypes.STRING,
       allowNull: false
     }
-    //! Fazer chave estrangeira dos alunos
   },
   {
     timestamps: false

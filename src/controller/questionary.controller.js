@@ -1,4 +1,4 @@
-import { Questionary, Questionary } from "../model/Questionary.model.js";
+import { Questionary } from "../model/Questionary.model.js";
 
 const createQuestionary = async (req, res) => {
     try {
@@ -71,4 +71,4 @@ const deleteQuestionary = async (req, res) => {
     }
 }
 
-export { getCompany, createCompany, updateCompany, deleteCompany }
+export { getQuestionary, createQuestionary, updateQuestionary, deleteQuestionary }
