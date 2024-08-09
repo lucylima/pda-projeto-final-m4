@@ -1,74 +1,85 @@
-import { Company } from "../model/Company.model.js";
+import { Company } from '../model/Company.model.js'
 
 const createCompany = async (req, res) => {
-    try {
-        const { nome, cnpj } = req.body;
-        const newCompany = await Company.create({
-            name: nome,
-            cnpj: cnpj,
-
-        });
-        return res.status(201).json({ newCompany });
-    } catch (erro) {
-        return res.status(400).json({ error: erro.message });
-    }
+  try {
+    const { nome, cnpj } = req.body
+    const company = { nome, cnpj }
+    const newCompany = await Company.create({
+      name: nome,
+      cnpj
+    })
+    return res.status(201).json({ sucess: company })
+  } catch (error) {
+    return res.status(400).json({ error })
+  }
 }
 
 const getCompany = async (req, res) => {
-    try {
-        const companys = await Company.findAll();
-        return res.status(200).json(companys);
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-    }
+  try {
+    const company = await Company.findAll()
+    return res.status(200).json({ company })
+  } catch (error) {
+    return res.status(400).json({ error })
+  }
+}
+
+const findCompany = async (req, res) => {
+  try {
+    const { cnpj } = req.params
+    const company = await Company.findOne({ where: cnpj })
+    return res.status(200).json({ company })
+  } catch (error) {
+    return res.status(400).json({ error })
+  }
 }
 
 const deleteCompany = async (req, res) => {
-    const { id } = req.params;
-    try {
-        await Company.destroy({
-            where: {
-                id
-            }
-        });
-        return res.status(200).json({ message: 'Empresa deletado!' });
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-    }
+  try {
+    const { cnpj } = req.params
+    await Company.destroy({
+      where: {
+        cnpj
+      }
+    })
+    return res.status(200).json({ sucess: 'Empresa deletada' })
+  } catch (error) {
+    return res.status(400).json({ error })
+  }
 }
 
 const updateCompany = async (req, res) => {
-    const { id } = req.body
-    const {
-        Name,
-        cnpj
-
-    } = req.body
-
-    try {
-        const [updated] = await Company.update(
-            {
-                Name,
-                cnpj,
-
-            },
-            {
-                where: { id },
-                returning: true
-            }
-        )
-
-        if (updated) {
-            const updatedCompany = await Company.findOne({ where: { id } })
-            return res.status(200).json(updatedCompany)
-        } else {
-            return res
-                .status(404)
-                .json({ message: 'Empresa não foi encontrada' })
+  try {
+    const { id } = req.params
+    const { nome, cnpj } = req.body
+    const company = await Company.findOne({
+      where: { id },
+      returning: true
+    })
+    if (company) {
+      const editedCompany = await Company.update(
+        {
+          name: nome,
+          cnpj
+        },
+        {
+          where: { id }
         }
-    } catch (error) {
-        return res.status(500).json({ error: 'Erro na Empresa' })
+      )
+      return res.status(200).json({ sucess: editedCompany })
+    } else {
+      return res
+        .status(404)
+        .json({ message: 'Empresa não foi encontrada' })
     }
+  } catch (error) {
+    return res.status(400).json({ error })
+  }
 }
 
-export { getCompany, createCompany, updateCompany, deleteCompany }
+export {
+  getCompany,
+  createCompany,
+  updateCompany,
+  deleteCompany,
+  findCompany
+}

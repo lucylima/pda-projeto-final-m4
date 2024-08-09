@@ -3,14 +3,16 @@ import {
   createCompany,
   getCompany,
   updateCompany,
-  deleteCompany
+  deleteCompany,
+  findCompany
 } from '../controller/company.controller.js'
 
 const companyRouter = Router()
 
-companyRouter.post('/register/company', createCompany)
 companyRouter.get('/company', getCompany)
-companyRouter.put('/estudante/:company_id', updateCompany)
-companyRouter.delete('/delete/comapny/:id', deleteCompany)
+companyRouter.get('/company/:cnpj', findCompany)
+companyRouter.post('/company/register', createCompany)
+companyRouter.put('/company/edit/:id', updateCompany)
+companyRouter.delete('/company/delete/:cnpj', deleteCompany)
 
 export { companyRouter }

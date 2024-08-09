@@ -69,9 +69,9 @@ const revealAdminToken = async (req, res) => {
 
 const editAdmin = async (req, res) => {
   try {
+    const { token } = req.params
     const { nome, cpf, dataDeNascimento, endereco } = req.body
     const editedAdmin = { nome, cpf, dataDeNascimento, endereco }
-    const { token } = req.params
     try {
       const admin = await Admin.findOne({ where: token})
       if(admin){
