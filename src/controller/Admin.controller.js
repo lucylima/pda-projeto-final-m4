@@ -1,3 +1,4 @@
+import { where } from 'sequelize'
 import { Admin, adminAuth } from '../model/Admin.model.js'
 import { nameFormatter } from '../utils/nameFormat.js'
 
@@ -11,9 +12,9 @@ const createAdmin = async (req, res) => {
       birthDate: dataDeNascimento,
       address: endereco
     })
-    return res.status(201).json({ sucesso: newAdmin })
+    return res.status(201).json({ sucess: newAdmin })
   } catch (error) {
-    return res.status(400).json({ erro: error })
+    return res.status(400).json({ error: error })
   }
 }
 
@@ -24,16 +25,19 @@ const readAdmin = async (req, res) => {
     })
     return res.status(200).json({ admins })
   } catch (error) {
-    return res.status(400).json(error)
+    return res.status(400).json({ error })
   }
 }
 
-const readAdminParam = async (req, res) => {
+const findAdmin = async (req, res) => {
   try {
-    const { id } = req.params
-    const admin = await Admin.findOne({ where: { id: Number(id) } })
+    const { cpf } = req.params
+    const admin = await Admin.findOne({
+      where: { cpf },
+      attributes: { exclude: ['id', 'token'] }
+    })
     if (admin) {
-      return res.status(200).json(admin)
+      return res.status(200).json({ admin })
     } else {
       return res.status(404).json({ error: '404 not found' })
     }
@@ -43,8 +47,8 @@ const readAdminParam = async (req, res) => {
 }
 
 const revealAdminToken = async (req, res) => {
-  const { access, cpf } = req.params
   try {
+    const { access, cpf } = req.params
     if (access == 1234) {
       const admin = await Admin.findOne({
         where: { cpf },
@@ -66,30 +70,33 @@ const revealAdminToken = async (req, res) => {
 const editAdmin = async (req, res) => {
   try {
     const { nome, cpf, dataDeNascimento, endereco } = req.body
+    const editedAdmin = { nome, cpf, dataDeNascimento, endereco }
     const { token } = req.params
-    await Admin.update(
-      {
-        name: nameFormatter(nome),
-        cpf,
-        birthDate: dataDeNascimento,
-        address: endereco
-      },
-      {
-        where: {
-          token: token
-        }
+    try {
+      const admin = await Admin.findOne({ where: token})
+      if(admin){
+        await Admin.update(
+          {
+            name: nameFormatter(nome),
+            cpf,
+            birthDate: dataDeNascimento,
+            address: endereco
+          },
+          {
+            where: {
+              token: token
+            }
+          }
+        )
+      }else{
+        res.status(401).json({erorr: 'unauthorized'})
       }
-    )
-    return res.status(200).json({
-      sucess: {
-        nome,
-        cpf,
-        dataDeNascimento,
-        endereco
-      }
-    })
+    } catch (error) {
+      res.status(404).json({erorr: 'erro ao tentar validar token'})
+    }
+    return res.status(200).json({ sucess: { editedAdmin } })
   } catch (error) {
-    return res.status(400).json({ errorMessage: error })
+    return res.status(400).json({ error  })
   }
 }
 
@@ -99,13 +106,13 @@ const deleteAdmin = async (req, res) => {
     let auth = await adminAuth(cpf, token)
     if (auth) {
       try {
-        const deletedAdmin = await Admin.destroy({
+       await Admin.destroy({
           where: {
             cpf,
             token
           }
         })
-        return res.status(200).json({ Sucesso: auth })
+        return res.status(200).json({ Sucess: auth })
       } catch (error) {
         return res.status(400).json({ Error: error })
       }
@@ -121,7 +128,7 @@ const deleteAdmin = async (req, res) => {
 export {
   createAdmin,
   readAdmin,
-  readAdminParam,
+  findAdmin,
   editAdmin,
   deleteAdmin,
   revealAdminToken

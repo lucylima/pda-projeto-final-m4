@@ -6,11 +6,11 @@ import {
   deleteCompany
 } from '../controller/company.controller.js'
 
-const CompanyRouter = Router()
+const companyRouter = Router()
 
-CompanyRouter.post('/register/company', createCompany)
-CompanyRouter.get('/company', getCompany)
-CompanyRouter.put('/estudante/:company_id', updateCompany)
-CompanyRouter.delete('/delete/comapny/:id', deleteCompany)
+companyRouter.post('/register/company', createCompany)
+companyRouter.get('/company', getCompany)
+companyRouter.put('/estudante/:company_id', updateCompany)
+companyRouter.delete('/delete/comapny/:id', deleteCompany)
 
-export { CompanyRouter }
+export { companyRouter }
