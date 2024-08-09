@@ -2,7 +2,6 @@ import { Questions } from "../model/Questions.models.js";
 
 const createQuestions = async (req, res) => {
     try {
-        await Questions.sync();
         const { questao, answer } = req.body;
         const newQuestions = await Questions.create({
             question: questao,

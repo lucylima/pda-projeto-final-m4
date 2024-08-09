@@ -2,7 +2,6 @@ import { Company } from "../model/Company.model.js";
 
 const createCompany = async (req, res) => {
     try {
-        await Company.sync();
         const { nome, cnpj } = req.body;
         const newCompany = await Company.create({
             name: nome,

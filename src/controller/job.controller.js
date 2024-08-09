@@ -2,7 +2,6 @@ import { Jobs } from '../model/job.models.js'
 
 const createJob = async (req, res) => {
   try {
-    await Jobs.sync({ force: true })
     const { nomeVaga, area, descricao, empresa } = req.body
     const newJob = await Jobs.create({
       name: nomeVaga,

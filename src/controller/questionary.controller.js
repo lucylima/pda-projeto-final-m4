@@ -2,7 +2,6 @@ import { Questionary, Questionary } from "../model/Questionary.model.js";
 
 const createQuestionary = async (req, res) => {
     try {
-        await Questionary.sync();
         const { id, course } = req.body;
         const newQuestionary = await Questionary.create({
 
