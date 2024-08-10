@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize'
 import { database } from '../database/db.js'
-import { Jobs } from './job.models.js'
 
 const Company = database.define(
   'Company',
