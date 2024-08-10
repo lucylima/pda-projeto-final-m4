@@ -1,5 +1,5 @@
 import { Student } from '../model/Student.model.js'
-// import { registrationNumber } from '../utils/numberPlate.js'
+import { registrationNumber } from '../utils/numberPlate.js'
 
 const getStudents = async (req, res) => {
   try {
@@ -18,15 +18,24 @@ const createStudents = async (req, res) => {
       cpf,
       dataDeNascimento,
       nis,
-      endereco, 
+      endereco,
       rendaFamiliar,
       turma,
       curso
     } = req.body
 
-    //  const matricula = registrationNumber()
+    let matricula = registrationNumber()
+  
+    const students = await Student.findAll()
+
+    const allIdStudents = students.map(student => student.id)
+
+     while (allIdStudents.includes(matricula)) {
+      matricula = registrationNumber()
+     }
 
     const newStudent = await Student.create({
+      studentId: matricula,
       fullName: nome,
       cpf,
       birthDate: dataDeNascimento,
@@ -35,7 +44,6 @@ const createStudents = async (req, res) => {
       familyIncome: rendaFamiliar,
       class: turma,
       course: curso
-      // ,registrationNumber: matricula
     })
     return res.status(201).json(newStudent)
   } catch (error) {
@@ -44,13 +52,16 @@ const createStudents = async (req, res) => {
 }
 
 const deleteStudent = async (req, res) => {
-  const { student_id } = req.params
-  const { cpf, token } = req.body
+
+  const { cpf, token, studentId } = req.params
+
+  
+  let admin = await adminAuth(cpf, token)
   if (admin) {
     try {
-      const result = await Student.destroy({
+       await Student.destroy({
         where: {
-          id: student_id
+          studentId: studentId
         }
       })
       return res.status(200).json({
@@ -66,49 +77,54 @@ const deleteStudent = async (req, res) => {
     res.status(401).json({ message: 'Falha na autenticação' })
   }
 }
-
 const updateStudent = async (req, res) => {
-  const { id } = req.body
-  const {
-    fullName,
-    cpf,
-    birthDate,
-    nis,
-    address,
-    familyIncome,
-    turma,
-    course
-  } = req.body
+  const { CPF, token, studentId } = req.params
 
-  try {
-    const [updated] = await Student.update(
-      {
-        fullName,
-        cpf,
-        birthDate,
-        nis,
-        address,
-        familyIncome,
-        turma,
-        course
-      },
-      {
-        where: { id },
-        returning: true
+  let admin = await adminAuth(CPF, token)
+  if (admin) {
+    const {
+      fullName,
+      cpf,
+      birthDate,
+      nis,
+      address,
+      familyIncome,
+      turma,
+      course
+    } = req.body
+
+    try {
+      const [updated] = await Student.update(
+        {
+          fullName,
+          cpf,
+          birthDate,
+          nis,
+          address,
+          familyIncome,
+          turma,
+          course
+        },
+        {
+          where: { studentId },
+          returning: true
+        }
+      )
+
+      if (updated) {
+        const updatedStudent = await Student.findOne({ where: { studentId } })
+        return res.status(200).json(updatedStudent)
+      } else {
+        return res.status(404).json({ message: 'Estudante não foi encontrado' })
       }
-    )
-
-    if (updated) {
-      const updatedStudent = await Student.findOne({ where: { id } })
-      return res.status(200).json(updatedStudent)
-    } else {
-      return res
-        .status(404)
-        .json({ message: 'Estudante foi encontrado' })
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({ error: 'Erro ao atualizar o estudante' })
     }
-  } catch (error) {
-    return res.status(500).json({ error: 'Erro no estudante' })
+  } else {
+    res.status(401).json({ message: 'Falha na autenticação' })
   }
 }
+
 
 export { getStudents, createStudents, updateStudent, deleteStudent }

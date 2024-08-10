@@ -1,14 +1,14 @@
 import { database } from '../database/db.js'
 import { DataTypes } from 'sequelize'
 
+
 const Student = database.define(
   'Student',
   {
-    id: {
+    studentId : {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
+      allowNull: false
     },
     fullName: {
       type: DataTypes.STRING,
@@ -41,14 +41,6 @@ const Student = database.define(
     course: {
       type: DataTypes.STRING,
       allowNull: true
-    },
-    // registrationNumber: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    student_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
     },
     active_status: {
       type: DataTypes.BOOLEAN,

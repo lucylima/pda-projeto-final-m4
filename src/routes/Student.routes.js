@@ -9,9 +9,9 @@ import {
 const studentRouter = Router()
 
 studentRouter.get('/estudantes', getStudents)
-studentRouter.post('/cadastrar/estudante', createStudents)
-studentRouter.delete('/estudantes/:student_id', deleteStudent)
-studentRouter.put('/estudante/:student_id', updateStudent)
+studentRouter.post('/estudante/cadastrar', createStudents)
+studentRouter.delete('/estudante/:cpf/:token/:studentId', deleteStudent)
+studentRouter.put('/estudante/:cpf/:token/:studentId', updateStudent)
 
 export { studentRouter }
 
