@@ -1,5 +1,6 @@
 import { database } from '../database/db.js'
 import { DataTypes } from 'sequelize'
+import { Company } from './Company.model.js'
 
 const Jobs = database.define(
   'Jobs',
@@ -22,9 +23,13 @@ const Jobs = database.define(
       type: DataTypes.STRING,
       allowNull: false
     },
-    company: {
+    company_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: Company,
+        key: 'id'
+      }
     }
   },
   {

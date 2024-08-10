@@ -7,7 +7,7 @@ const createJob = async (req, res) => {
       name: nomeVaga,
       area: area,
       description: descricao,
-      company: empresa
+      company_id: empresa
     })
     return res.status(201).json(newJob)
   } catch (error) {
@@ -26,7 +26,7 @@ const getAllJobs = async (req, res) => {
 
 const updateJobs = async (req, res) => {
   const { id } = req.params
-  const { name, area, description, company } = req.body
+  const { name, area, description, company_id } = req.body
 
   try {
     const [updated] = await Jobs.update(
@@ -34,7 +34,7 @@ const updateJobs = async (req, res) => {
         name,
         area,
         description,
-        company
+        company_id
       },
       {
         where: { id },
