@@ -8,9 +8,9 @@ import {
 
 const questionsRouter = Router()
 
-QuestionsRouter.post('/questions/create', createQuestions)
-QuestionsRouter.get('/questions', getQuestions)
-QuestionsRouter.put('/questions/edit/:id', updateQuestions)
-QuestionsRouter.delete('/questions/delete/:id', deleteQuestions)
+questionsRouter.get('/questions', getQuestions)
+questionsRouter.post('/questions/add', createQuestions)
+questionsRouter.put('/questions/edit/:id', updateQuestions)
+questionsRouter.delete('/questions/delete/:id', deleteQuestions)
 
 export { questionsRouter }

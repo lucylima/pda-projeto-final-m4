@@ -4,10 +4,10 @@ import { DataTypes, Op } from 'sequelize'
 const Admin = database.define(
   'Admin',
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+    token: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
@@ -25,10 +25,6 @@ const Admin = database.define(
     address: {
       type: DataTypes.STRING
     },
-    token: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
-    }
   },
   {
     timestamps: false
@@ -41,7 +37,7 @@ const adminAuth = async (cpf, token) => {
       where: {
         [Op.and]: [{ cpf }, { token }]
       },
-      attributes: ['id']
+      attributes: ['name']
     })
     if (admin) {
       return true

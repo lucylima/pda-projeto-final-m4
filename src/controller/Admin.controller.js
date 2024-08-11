@@ -72,7 +72,7 @@ const editAdmin = async (req, res) => {
     const { token } = req.params
     const { nome, cpf, dataDeNascimento, endereco } = req.body
     const editedAdmin = { nome, cpf, dataDeNascimento, endereco }
-    try {
+    try { 
       const admin = await Admin.findOne({ where: token })
       if (admin) {
         await Admin.update(

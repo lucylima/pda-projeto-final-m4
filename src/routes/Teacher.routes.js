@@ -8,9 +8,9 @@ import {
 
 const TeacherRouter = Router()
 
-TeacherRouter.post('/register/teacher', createTeacher)
 TeacherRouter.get('/teacher', getTeacher)
-TeacherRouter.put('/update/teacher/:id', updateTeacher)
-TeacherRouter.delete('/delete/teacher/:id', deleteTeacher)
+TeacherRouter.post('/teacher/register', createTeacher)
+TeacherRouter.put('/teacher//update/:id', updateTeacher)
+TeacherRouter.delete('/teacher/delete/:id', deleteTeacher)
 
 export { TeacherRouter }

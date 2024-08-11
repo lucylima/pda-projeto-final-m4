@@ -1,5 +1,6 @@
 import { Student } from '../model/Student.model.js'
 import { registrationNumber } from '../utils/numberPlate.js'
+import { adminAuth } from '../model/Admin.model.js'
 
 const getStudents = async (req, res) => {
   try {
@@ -25,14 +26,14 @@ const createStudents = async (req, res) => {
     } = req.body
 
     let matricula = registrationNumber()
-  
+
     const students = await Student.findAll()
 
-    const allIdStudents = students.map(student => student.id)
+    const allIdStudents = students.map((student) => student.id)
 
-     while (allIdStudents.includes(matricula)) {
+    while (allIdStudents.includes(matricula)) {
       matricula = registrationNumber()
-     }
+    }
 
     const newStudent = await Student.create({
       studentId: matricula,
@@ -52,14 +53,12 @@ const createStudents = async (req, res) => {
 }
 
 const deleteStudent = async (req, res) => {
-
   const { cpf, token, studentId } = req.params
 
-  
   let admin = await adminAuth(cpf, token)
   if (admin) {
     try {
-       await Student.destroy({
+      await Student.destroy({
         where: {
           studentId: studentId
         }
@@ -112,19 +111,24 @@ const updateStudent = async (req, res) => {
       )
 
       if (updated) {
-        const updatedStudent = await Student.findOne({ where: { studentId } })
+        const updatedStudent = await Student.findOne({
+          where: { studentId }
+        })
         return res.status(200).json(updatedStudent)
       } else {
-        return res.status(404).json({ message: 'Estudante não foi encontrado' })
+        return res
+          .status(404)
+          .json({ message: 'Estudante não foi encontrado' })
       }
     } catch (error) {
       console.log(error)
-      return res.status(500).json({ error: 'Erro ao atualizar o estudante' })
+      return res
+        .status(500)
+        .json({ error: 'Erro ao atualizar o estudante' })
     }
   } else {
     res.status(401).json({ message: 'Falha na autenticação' })
   }
 }
-
 
 export { getStudents, createStudents, updateStudent, deleteStudent }

@@ -23,7 +23,7 @@ const getQuestionary = async (req, res) => {
 }
 
 const updateQuestionary = async (req, res) => {
-  const { id } = req.body
+  const { id } = req.params
   const { course } = req.body
 
   try {

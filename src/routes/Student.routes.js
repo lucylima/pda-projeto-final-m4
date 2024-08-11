@@ -8,10 +8,10 @@ import {
 
 const studentRouter = Router()
 
-studentRouter.get('/estudantes', getStudents)
-studentRouter.post('/estudante/cadastrar', createStudents)
-studentRouter.delete('/estudante/:cpf/:token/:studentId', deleteStudent)
-studentRouter.put('/estudante/:cpf/:token/:studentId', updateStudent)
+studentRouter.get('/student', getStudents)
+studentRouter.post('/student/register', createStudents)
+studentRouter.delete('/student/:cpf/:token/:studentId', deleteStudent)
+studentRouter.put('/student/:cpf/:token/:studentId', updateStudent)
 
 export { studentRouter }
 
