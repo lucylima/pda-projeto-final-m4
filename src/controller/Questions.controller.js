@@ -2,7 +2,7 @@ import { Questions } from "../model/Questions.models.js";
 
 const createQuestions = async (req, res) => {
     try {
-        const { questao, answer } = req.body;
+        const { questao, resposta } = req.body;
         const newQuestions = await Questions.create({
             question: questao,
             answer: resposta,
@@ -38,7 +38,7 @@ const deleteQuestions = async (req, res) => {
 }
 
 const updateQuestions = async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
     const {
         question,
         answer
