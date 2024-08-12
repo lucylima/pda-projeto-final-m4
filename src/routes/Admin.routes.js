@@ -6,7 +6,7 @@ import {
   deleteAdmin,
   revealAdminToken,
   findAdmin
-} from '../controller/Admin.controller.js'
+} from '../controller/admin.controller.js'
 
 const adminRouter = Router()
 
