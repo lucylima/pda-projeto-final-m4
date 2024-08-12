@@ -1,5 +1,5 @@
 import { database } from '../database/db.js'
-import { Teacher } from '../model/Teacher.model.js'
+import { Teacher } from './Teacher.model.js'
 import { DataTypes } from 'sequelize'
 
 const Class = database.define(
