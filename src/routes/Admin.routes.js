@@ -17,4 +17,4 @@ adminRouter.post('/admin/register', createAdmin)
 adminRouter.put('/admin/edit/:token', editAdmin)
 adminRouter.delete('/admin/delete/:cpf/:token', deleteAdmin)
 
-export { adminRouter }
+export { adminRouter } 

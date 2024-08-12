@@ -10,7 +10,7 @@ import { companyRouter } from './routes/company.routes.js'
 import { questionaryRouter } from './routes/questionary.routes.js'
 
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 4000
 
 app.use(express.json())
 app.use(cors())
