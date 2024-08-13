@@ -2,7 +2,7 @@ import { Questionary } from '../model/Questionary.model.js'
 
 const createQuestionary = async (req, res) => {
   try {
-    const { id, course } = req.body
+    const { course } = req.body
     const newQuestionary = await Questionary.create({
       course: course
     })
@@ -45,7 +45,7 @@ const updateQuestionary = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: 'Questionario  não foi encontrado' })
+        .json({ message: 'Questionario não foi encontrado' })
     }
   } catch (error) {
     return res.status(500).json({ error: 'Erro no Questionario' })
