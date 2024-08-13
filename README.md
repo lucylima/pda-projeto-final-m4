@@ -66,4 +66,9 @@ A API oferece um sistema integrado que conecta essas pessoas com empresas dispos
 2. Instale as dependencias:
    ```bash
      npm install
+   
+3. Roda o projeto
+4. 
+    ```bash
+   npm run dev 
 
