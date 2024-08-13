@@ -68,7 +68,6 @@ A API oferece um sistema integrado que conecta essas pessoas com empresas dispos
      npm install
    
 3. Roda o projeto
-4. 
     ```bash
    npm run dev 
 
