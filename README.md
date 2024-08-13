@@ -61,11 +61,11 @@ A API oferece um sistema integrado que conecta essas pessoas com empresas dispos
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/vagas-emprego-marginalizadas.git
+   https://github.com/lucylima/pda-projeto-final-m4.git
 
 2. Instale as dependencias:
    ```bash
-     npm install
+   npm install
    
 3. Roda o projeto
     ```bash
