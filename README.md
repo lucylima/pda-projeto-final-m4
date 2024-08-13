@@ -62,4 +62,8 @@ A API oferece um sistema integrado que conecta essas pessoas com empresas dispos
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu-usuario/vagas-emprego-marginalizadas.git
-   cd vagas-emprego-marginalizadas
+
+2. Instale as dependencias:
+   ```bash
+     npm install
+
