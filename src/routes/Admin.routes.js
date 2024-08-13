@@ -11,8 +11,8 @@ import {
 const adminRouter = Router()
 
 adminRouter.get('/admin', readAdmin)
-adminRouter.get("/admin/:cpf", findAdmin)
-adminRouter.get("/admin/token/:access/:cpf", revealAdminToken)
+adminRouter.get('/admin/:cpf', findAdmin)
+adminRouter.get('/admin/token/:access/:cpf', revealAdminToken)
 adminRouter.post('/admin/register', createAdmin)
 adminRouter.put('/admin/edit/:token', editAdmin)
 adminRouter.delete('/admin/delete/:cpf/:token', deleteAdmin)

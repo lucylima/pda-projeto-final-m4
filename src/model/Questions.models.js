@@ -6,20 +6,20 @@ const Questions = database.define(
   'Questions',
   {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true
     },
-    question: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        autoIncrement: true
+    questions: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true
     },
-    answer: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        autoIncrement: true
+    answers: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      autoIncrement: true
     },
     questionary_id: {
       type: DataTypes.INTEGER,
@@ -32,6 +32,7 @@ const Questions = database.define(
   },
   {
     timestamps: false
-  })
+  }
+)
 
 export { Questions }

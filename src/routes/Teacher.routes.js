@@ -6,11 +6,11 @@ import {
   deleteTeacher
 } from '../controller/teacher.controller.js'
 
-const TeacherRouter = Router()
+const teacherRouter = Router()
 
-TeacherRouter.get('/teacher', getTeacher)
-TeacherRouter.post('/teacher/register', createTeacher)
-TeacherRouter.put('/teacher//update/:id', updateTeacher)
-TeacherRouter.delete('/teacher/delete/:id', deleteTeacher)
+teacherRouter.get('/teacher', getTeacher)
+teacherRouter.post('/teacher/register', createTeacher)
+teacherRouter.put('/teacher//update/:id', updateTeacher)
+teacherRouter.delete('/teacher/delete/:id', deleteTeacher)
 
-export { TeacherRouter }
+export { teacherRouter }

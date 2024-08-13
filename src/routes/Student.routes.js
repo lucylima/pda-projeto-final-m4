@@ -14,4 +14,3 @@ studentRouter.delete('/student/:cpf/:token/:studentId', deleteStudent)
 studentRouter.put('/student/:cpf/:token/:studentId', updateStudent)
 
 export { studentRouter }
-

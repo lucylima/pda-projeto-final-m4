@@ -10,7 +10,6 @@ const Questionary = database.define(
       allowNull: false,
       autoIncrement: true
     },
-
     course: {
       type: DataTypes.STRING,
       allowNull: false
