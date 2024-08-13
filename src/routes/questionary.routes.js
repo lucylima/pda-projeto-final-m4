@@ -10,7 +10,7 @@ const questionaryRouter = Router()
 
 questionaryRouter.post('/questionary/add', createQuestionary)
 questionaryRouter.get('/questionary', getQuestionary)
-questionaryRouter.put('/questionary/:id', updateQuestionary)
+questionaryRouter.put('/questionary/edit/:id', updateQuestionary)
 questionaryRouter.delete('/questionary/delete/:id', deleteQuestionary)
 
 

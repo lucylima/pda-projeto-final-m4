@@ -8,13 +8,15 @@ import { classRouter } from './routes/class.routes.js'
 import { TeacherRouter } from './routes/teacher.routes.js'
 import { companyRouter } from './routes/company.routes.js'
 import { questionaryRouter } from './routes/questionary.routes.js'
+import { indexRouter } from './routes/index.routes.js'
 
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT 
 
 app.use(express.json())
 app.use(cors())
 
+app.use(indexRouter)
 app.use(jobRouter)
 app.use(adminRouter)
 app.use(studentRouter)
