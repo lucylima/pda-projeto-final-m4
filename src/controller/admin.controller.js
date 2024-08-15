@@ -1,4 +1,3 @@
-import { where } from 'sequelize'
 import { Admin, adminAuth } from '../model/Admin.model.js'
 import { nameFormatter } from '../utils/nameFormat.js'
 
@@ -34,10 +33,9 @@ const findAdmin = async (req, res) => {
     const { cpf } = req.params
     const admin = await Admin.findOne({
       where: { cpf },
-      attributes: { exclude: ['id', 'token'] }
     })
     if (admin) {
-      return res.status(200).json(dmin)
+      return res.status(200).json(admin)
     } else {
       return res.status(404).json({ error: '404 not found' })
     }
@@ -51,8 +49,7 @@ const revealAdminToken = async (req, res) => {
     const { access, cpf } = req.params
     if (access == 1234) {
       const admin = await Admin.findOne({
-        where: { cpf },
-        attributes: { exclude: ['id'] }
+        where: { cpf }
       })
       if (admin) {
         return res.status(200).json(admin)
