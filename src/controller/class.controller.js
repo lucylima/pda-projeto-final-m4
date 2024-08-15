@@ -18,9 +18,7 @@ const createClass = async (req, res) => {
 
 const getAllClasses = async (req, res) => {
   try {
-    const classes = await Class.findAll({
-      include: Teacher
-    })
+    const classes = await Class.findAll()
     return res.status(200).json(classes)
   } catch (error) {
     return res.status(400).json(error)

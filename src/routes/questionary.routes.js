@@ -8,8 +8,8 @@ import {
 
 const questionaryRouter = Router()
 
-questionaryRouter.post('/questionary/add', createQuestionary)
 questionaryRouter.get('/questionary', getQuestionary)
+questionaryRouter.post('/questionary/add', createQuestionary)
 questionaryRouter.put('/questionary/edit/:id', updateQuestionary)
 questionaryRouter.delete('/questionary/delete/:id', deleteQuestionary)
 

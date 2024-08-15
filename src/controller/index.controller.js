@@ -29,7 +29,7 @@ const showEveryRoute = async (req, res) => {
 
     Job: {
       /job' [GET]
-      /job/register [POST]
+      /job/add [POST]
       /job/edit/:id [PUT]
       /job/delete/:id [DELETE]
     }

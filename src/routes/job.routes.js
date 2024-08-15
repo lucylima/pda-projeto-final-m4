@@ -8,9 +8,9 @@ import {
 
 const jobRouter = Router()
 
-jobRouter.post('/add/job', createJob)
-jobRouter.get('/see/job', getAllJobs)
-jobRouter.put('/update/job/:id', updateJobs)
-jobRouter.delete('/delete/job/:id', deleteJob)
+jobRouter.post('/job/add', createJob)
+jobRouter.get('/job', getAllJobs)
+jobRouter.put('job/update/:id', updateJobs)
+jobRouter.delete('/job/delete/:id', deleteJob)
 
 export { jobRouter }
