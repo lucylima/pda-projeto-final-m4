@@ -19,7 +19,7 @@ const createClass = async (req, res) => {
 const getAllClasses = async (req, res) => {
   try {
     const classes = await Class.findAll({
-      include: Teacher
+      include: {model: Teacher}
     })
     return res.status(200).json(classes)
   } catch (error) {
